@@ -19,6 +19,9 @@ public class canvas {
         this.width = width;
         this.numberMines = numberMines;
         arrayCell = new ICell[height][width];
+
+        initArrayCell();
+        initMineArrayCell();
     }
 
     public ICell[][] getArrayCell() {
@@ -42,7 +45,7 @@ public class canvas {
     }
 
     //инициализирует arrayCell
-    public void initArrayCell()
+    private void initArrayCell()
     {
         for(int i = 0; i < height; i++)
         {
@@ -52,5 +55,19 @@ public class canvas {
             }
         }
         initMineArrayCell();
+    }
+
+    private void initNumber()
+    {
+        for(int i = 0; i < height; i++)
+        {
+            for(int j = 0; j<width; j++)
+            {
+                if(!arrayCell[i][j].isMine())
+                {
+
+                }
+            }
+        }
     }
 }
