@@ -11,4 +11,5 @@ public class Field implements IField{
     public void redraw(ICell[][] arrCell) {
 
     }
+
 }

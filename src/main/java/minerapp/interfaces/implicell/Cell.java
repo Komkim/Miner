@@ -6,13 +6,21 @@ import javafx.scene.shape.Rectangle;
 //ячейка
 public class Cell implements ICell{
     private boolean cellMine;
-    private boolean cellUnknown=false;
-    private boolean thinkMine = false;
-    private boolean openCell = false;
+    private boolean cellUnknown;
+    private boolean thinkMine;
+    private boolean openCell;
     private int number;
 
-    public Cell(boolean mine) {
-        cellMine = mine;
+    public Cell() {
+        cellMine = false;
+        cellUnknown=false;
+        thinkMine = false;
+        openCell = false;
+        number = -1;
+    }
+
+    public void setCellMine(boolean cellMine) {
+        this.cellMine = cellMine;
     }
 
     public void setNumber(int number) {

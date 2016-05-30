@@ -2,6 +2,10 @@ package main.java.minerapp.classes;
 
 
 import main.java.minerapp.interfaces.ICell;
+import main.java.minerapp.interfaces.implicell.Cell;
+import main.java.minerapp.start.Main;
+
+import java.util.Random;
 
 //матрица для наших клеток
 public class canvas {
@@ -21,9 +25,32 @@ public class canvas {
         return arrayCell;
     }
 
-    //инициализация нашего поля
+    //проставляет мины в произвольном порядке
+    private void initMineArrayCell()
+    {
+        for(int i = 0; i < numberMines; i++)
+        {
+            Random ran = new Random();
+            int x;
+            int y;
+            do {
+                x = ran.nextInt(arrayCell[0].length);
+                y = ran.nextInt(arrayCell.length);
+            }while(arrayCell[y][x].isMine());
+            arrayCell[y][x].setCellMine(true);
+        }
+    }
+
+    //инициализирует arrayCell
     public void initArrayCell()
     {
-
+        for(int i = 0; i < height; i++)
+        {
+            for(int j = 0; j < width; j++)
+            {
+                arrayCell[i][j] = new Cell();
+            }
+        }
+        initMineArrayCell();
     }
 }
