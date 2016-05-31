@@ -1,5 +1,7 @@
 package main.java.minerapp.interfaces.implicell;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import main.java.minerapp.interfaces.ICell;
 import javafx.scene.shape.Rectangle;
 
@@ -16,7 +18,7 @@ public class Cell implements ICell{
         cellUnknown=false;
         thinkMine = false;
         openCell = false;
-        number = -1;
+        number = 9;
     }
 
     public void setCellMine(boolean cellMine) {
@@ -67,8 +69,20 @@ public class Cell implements ICell{
     }
 
     @Override
-    public void draw() {
-
+    public void draw(GraphicsContext gc, int x, int y) {
+        //if(x %2 == 0 || y % 2 ==0) openCell();
+        openCell();
+        if(openCell)
+        {
+            gc.setFill(Color.BLACK);
+            gc.strokeRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
+            gc.fillText(String.valueOf(number),26.75 + 20*x, 33.5 + 20*y);
+        }
+        else
+        {
+            gc.setFill(Color.AZURE);
+            gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
+        }
     }
 }
 

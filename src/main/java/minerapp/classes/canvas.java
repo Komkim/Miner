@@ -22,6 +22,7 @@ public class canvas {
 
         initArrayCell();
         initMineArrayCell();
+        initNumber();
     }
 
     public ICell[][] getArrayCell() {
@@ -57,17 +58,32 @@ public class canvas {
         initMineArrayCell();
     }
 
+    //проставляет цифру в клетку
     private void initNumber()
     {
+
         for(int i = 0; i < height; i++)
         {
             for(int j = 0; j<width; j++)
             {
                 if(!arrayCell[i][j].isMine())
                 {
-
+                    int countMine = 0;
+                    int heightStart = i - 1 < 0 ? 0 : i -1;
+                    int heightFinish = i + 1 >= height ? height-1 : i + 1;
+                    int widthStart = j - 1 < 0 ? 0 : j - 1;
+                    int widthFinish = j + 1 >= width ? width-1 : j + 1;
+                    for(int ii = heightStart; ii <= heightFinish; ii++)
+                    {
+                        for(int jj = widthStart; jj <= widthFinish; jj++)
+                        {
+                            if(arrayCell[ii][jj].isMine()) countMine++;
+                        }
+                    }
+                    arrayCell[i][j].setNumber(countMine);
                 }
             }
         }
+
     }
 }
