@@ -15,10 +15,12 @@ public class Miner {
     public static int height;
     public static int width;
 
+    Field field;
+
     public void Start(int x, int y, int mine) {
         Miner.height = y * 20 + 40;
         Miner.width = x * 20 + 40;
-
-        new Field(x,y,mine).redraw();
+        field = new Field(y,x,mine);
+        field.redraw();
     }
 }

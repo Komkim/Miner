@@ -35,7 +35,7 @@ public class Cell implements ICell{
 
     @Override
     public void openCell() {
-        this.openCell = !openCell;
+        this.openCell = true;
     }
 
     @Override
@@ -71,7 +71,8 @@ public class Cell implements ICell{
     @Override
     public void draw(GraphicsContext gc, int x, int y) {
         //if(x %2 == 0 || y % 2 ==0) openCell();
-        openCell();
+        //openCell();
+        gc.clearRect(20 + 20*x, 20 + 20*y, 20, 20);
         if(openCell)
         {
             gc.setFill(Color.BLACK);
@@ -80,7 +81,7 @@ public class Cell implements ICell{
         }
         else
         {
-            gc.setFill(Color.AZURE);
+            gc.setFill(Color.CHOCOLATE);
             gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
         }
     }

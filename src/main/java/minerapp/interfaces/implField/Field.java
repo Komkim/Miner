@@ -31,6 +31,7 @@ public class Field implements IField{
 
     @Override
     public void redraw() {
+
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 arr[i][j].draw(gc, j, i);
@@ -48,7 +49,8 @@ public class Field implements IField{
 
     @Override
     public void addAction() {
-        new Action().mouseClicked(root, label);
+        new Action().mouseClicked(root,label, arr, this);
+
     }
 
     @Override

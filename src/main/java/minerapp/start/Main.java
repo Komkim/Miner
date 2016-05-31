@@ -10,9 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //String address = "/fxml/main.fxml";
-        //Parent root = FXMLLoader.load(getClass().getResource(address));
-        new Miner().Start(10, 10, 30);
+        new Miner().Start(20, 20, 30);
         primaryStage.setTitle("Miner");
         primaryStage.setScene(new Scene(SingltonGroup.giveGroup(), Miner.width, Miner.height));
         primaryStage.show();
