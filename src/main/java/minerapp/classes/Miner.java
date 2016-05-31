@@ -8,26 +8,17 @@ import main.java.minerapp.gui.Action;
 import main.java.minerapp.gui.Elements;
 import main.java.minerapp.gui.SingltonGroup;
 import main.java.minerapp.interfaces.ICell;
+import main.java.minerapp.interfaces.implField.Field;
 
 //логика игры
 public class Miner {
+    public static int height;
+    public static int width;
 
-    public void Start() {
-        Group root = SingltonGroup.giveGroup();
-        Label label = new Elements().createLabel();
-        canvas can = new canvas(20, 20, 20);
-        ICell[][] arr = can.getArrayCell();
+    public void Start(int x, int y, int mine) {
+        Miner.height = y * 20 + 40;
+        Miner.width = x * 20 + 40;
 
-        Canvas canv = new Elements().createCanvas();
-        GraphicsContext gc = canv.getGraphicsContext2D();
-
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                arr[i][j].draw(gc, j, i);
-            }
-        }
-        new Action().mouseClicked(root, label);
-        root.getChildren().add(label);
-        root.getChildren().add(canv);
+        new Field(x,y,mine).redraw();
     }
 }

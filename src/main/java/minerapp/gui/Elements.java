@@ -3,6 +3,7 @@ package main.java.minerapp.gui;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import main.java.minerapp.classes.Miner;
 
 //класс для элементов гуя
 public class Elements {
@@ -13,6 +14,6 @@ public class Elements {
 
     public Canvas createCanvas()
     {
-        return new Canvas(600, 600);
+        return new Canvas(Miner.width, Miner.height);
     }
 }

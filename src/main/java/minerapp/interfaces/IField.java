@@ -1,7 +1,13 @@
 package main.java.minerapp.interfaces;
 
-//интерфейс для поля. По заданию может быть разным
+//интерфейс для поля.
 public interface IField {
-    void redraw(ICell[][] arrCell);//перерисовать поле игры
+    void redraw();//перерисовать поле игры
+
+    void creatGraphicsElements();//создание нужных для приложения графических элементов
+
+    void addAction();//добавление нужных событий
+
+    void addGraphicsElemnts();//добавление нужных графических элементов на поле
 
 }
