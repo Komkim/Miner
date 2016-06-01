@@ -35,23 +35,15 @@ public class Cell implements ICell{
         return openCell;
     }
 
-    public boolean isCheckOnCkech() {
-        return checkOnCkech;
-    }
+    public boolean isChecknotCkech() {return checkOnCkech;}
 
-    public void setCheckOnCkech(boolean checkOnCkech) {
-        this.checkOnCkech = checkOnCkech;
-    }
+    public void setChecknotCkech(boolean checkOnCkech) {this.checkOnCkech = checkOnCkech;}
 
     @Override
-    public void openCell() {
-        this.openCell = true;
-    }
+    public void openCell() {this.openCell = true;}
 
     @Override
-    public int getNumber() {
-        return number;
-    }
+    public int getNumber() {return number;}
 
     @Override
     public boolean isMine() {
@@ -80,14 +72,26 @@ public class Cell implements ICell{
 
     @Override
     public void draw(GraphicsContext gc, int x, int y) {
-        //if(x %2 == 0 || y % 2 ==0) openCell();
-        //openCell();
         gc.clearRect(20 + 20*x, 20 + 20*y, 20, 20);
         if(openCell)
         {
             gc.setFill(Color.BLACK);
             gc.strokeRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
-            if(number != 0) gc.fillText(String.valueOf(number),26.75 + 20*x, 33.5 + 20*y);
+            if(number != 0)
+            {
+                if(number == 9) gc.fillOval(25 + 20*x, 25 + 20*y, 10, 10);
+                else gc.fillText(String.valueOf(number),26.75 + 20*x, 33.5 + 20*y);
+            }
+        }
+        else if(isThinkMine())
+        {
+            gc.setFill(Color.BLACK);
+            gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 20, 20);
+        }
+        else if(isUnknownCell())
+        {
+            gc.setFill(Color.SALMON);
+            gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 20, 20);
         }
         else
         {

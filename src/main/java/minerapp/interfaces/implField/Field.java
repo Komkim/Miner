@@ -13,19 +13,14 @@ import main.java.minerapp.interfaces.IField;
 
 //реализация интерфейса для поля.
 public class Field implements IField{
-    canvas can;
     ICell[][] arr;
-    Group root;
-    Label label;
-    Canvas canv;
+    Canvas canvas;
     GraphicsContext gc;
 
-    public Field(int y, int x, int mine)
+    public Field(ICell[][] arr)
     {
-        can = new canvas(y, x, mine);
-        arr = can.getArrayCell();
+        this.arr = arr;
         creatGraphicsElements();
-        addAction();
         addGraphicsElements();
         redraw();
     }
@@ -40,31 +35,16 @@ public class Field implements IField{
         }
     }
 
-    public void checkZeroCell(int x, int y)
-    {
-        can.resetCheckCell();
-        can.checkZeroCell(x,y);
-    }
-
-
-
     @Override
     public void creatGraphicsElements() {
-        root = SingltonGroup.giveGroup();
-        label = new Elements().createLabel();
-        canv = new Elements().createCanvas();
-        gc = canv.getGraphicsContext2D();
+
+        canvas = new Elements().createCanvas();
+        gc = canvas.getGraphicsContext2D();
     }
 
-    @Override
-    public void addAction() {
-        new Action().mouseClicked(root,label, arr, this);
-
-    }
 
     @Override
     public void addGraphicsElements() {
-        root.getChildren().add(label);
-        root.getChildren().add(canv);
+        SingltonGroup.giveGroup().getChildren().add(canvas);
     }
 }

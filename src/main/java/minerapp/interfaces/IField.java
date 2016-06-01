@@ -6,7 +6,7 @@ public interface IField {
 
     void creatGraphicsElements();//создание нужных для приложения графических элементов
 
-    void addAction();//добавление нужных событий
+    //void addAction();//добавление нужных событий
 
     void addGraphicsElements();//добавление нужных графических элементов на поле
 

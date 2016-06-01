@@ -3,7 +3,6 @@ package main.java.minerapp.classes;
 
 import main.java.minerapp.interfaces.ICell;
 import main.java.minerapp.interfaces.implicell.Cell;
-import main.java.minerapp.start.Main;
 
 import java.util.Random;
 
@@ -98,29 +97,31 @@ public class canvas {
     public void checkZeroCell(int x, int y)
     {
         arrayCell[y][x].openCell();
-        if(arrayCell[y][x].getNumber() == 0 && !arrayCell[y][x].isCheckOnCkech())
+        if(arrayCell[y][x].getNumber() == 0 && !arrayCell[y][x].isChecknotCkech())
         {
-            arrayCell[y][x].setCheckOnCkech(true);
+            arrayCell[y][x].setChecknotCkech(true);
 
             int[] myCoord = startFinishPosition(x, y);
             for(int ii = myCoord[2]; ii <= myCoord[3]; ii++)
             {
                 for(int jj = myCoord[0]; jj <= myCoord[1]; jj++)
                 {
-
                     checkZeroCell(jj,ii);
                 }
             }
         }
     }
 
+    //
     public void resetCheckCell() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                arrayCell[i][j].setCheckOnCkech(false);
+                arrayCell[i][j].setChecknotCkech(false);
             }
         }
     }
+
+
 
 
 }
