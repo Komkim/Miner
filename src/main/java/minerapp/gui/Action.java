@@ -16,9 +16,20 @@ public class Action {
         root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(event.getButton() == MouseButton.PRIMARY) arrCell[((int)event.getY()/20 - 1)][((int)event.getX()/20 - 1)].openCell();
-                apply.setText(((int)event.getX()/20 - 1) + " " + ((int)event.getY()/20 - 1));
+                int x = ((int) event.getX() / 20 - 1);
+                int y = ((int) event.getY() / 20 - 1);
+
+                if(event.getButton() ==  MouseButton.SECONDARY)
+                {
+
+                }
+                if(event.getButton() == MouseButton.PRIMARY) {
+                    field.checkZeroCell(x,y);
+                }
+                apply.setText(y + " " + x);
                 field.redraw();
+
+
             }
         });
     }

@@ -11,6 +11,7 @@ public class Cell implements ICell{
     private boolean cellUnknown;
     private boolean thinkMine;
     private boolean openCell;
+    private boolean checkOnCkech;
     private int number;
 
     public Cell() {
@@ -18,6 +19,7 @@ public class Cell implements ICell{
         cellUnknown=false;
         thinkMine = false;
         openCell = false;
+        checkOnCkech = false;
         number = 9;
     }
 
@@ -31,6 +33,14 @@ public class Cell implements ICell{
 
     public boolean isOpenCell() {
         return openCell;
+    }
+
+    public boolean isCheckOnCkech() {
+        return checkOnCkech;
+    }
+
+    public void setCheckOnCkech(boolean checkOnCkech) {
+        this.checkOnCkech = checkOnCkech;
     }
 
     @Override
@@ -77,7 +87,7 @@ public class Cell implements ICell{
         {
             gc.setFill(Color.BLACK);
             gc.strokeRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
-            gc.fillText(String.valueOf(number),26.75 + 20*x, 33.5 + 20*y);
+            if(number != 0) gc.fillText(String.valueOf(number),26.75 + 20*x, 33.5 + 20*y);
         }
         else
         {

@@ -69,13 +69,10 @@ public class canvas {
                 if(!arrayCell[i][j].isMine())
                 {
                     int countMine = 0;
-                    int heightStart = i - 1 < 0 ? 0 : i -1;
-                    int heightFinish = i + 1 >= height ? height-1 : i + 1;
-                    int widthStart = j - 1 < 0 ? 0 : j - 1;
-                    int widthFinish = j + 1 >= width ? width-1 : j + 1;
-                    for(int ii = heightStart; ii <= heightFinish; ii++)
+                    int[] myCoord = startFinishPosition(j, i);
+                    for(int ii = myCoord[2]; ii <= myCoord[3]; ii++)
                     {
-                        for(int jj = widthStart; jj <= widthFinish; jj++)
+                        for(int jj = myCoord[0]; jj <= myCoord[1]; jj++)
                         {
                             if(arrayCell[ii][jj].isMine()) countMine++;
                         }
@@ -84,6 +81,46 @@ public class canvas {
                 }
             }
         }
-
     }
+
+    //проверяет чтобы координаты не выходили за пределы поля
+    private int[] startFinishPosition(int x, int y)
+    {
+        int heightStart = y - 1 < 0 ? 0 : y -1;
+        int heightFinish = y + 1 >= height ? height-1 : y + 1;
+        int widthStart = x - 1 < 0 ? 0 : x - 1;
+        int widthFinish = x + 1 >= width ? width-1 : x + 1;
+        return new int[]{widthStart,widthFinish,heightStart,heightFinish};
+    }
+
+
+    //открывает нулевые ячейки
+    public void checkZeroCell(int x, int y)
+    {
+        arrayCell[y][x].openCell();
+        if(arrayCell[y][x].getNumber() == 0 && !arrayCell[y][x].isCheckOnCkech())
+        {
+            arrayCell[y][x].setCheckOnCkech(true);
+
+            int[] myCoord = startFinishPosition(x, y);
+            for(int ii = myCoord[2]; ii <= myCoord[3]; ii++)
+            {
+                for(int jj = myCoord[0]; jj <= myCoord[1]; jj++)
+                {
+
+                    checkZeroCell(jj,ii);
+                }
+            }
+        }
+    }
+
+    public void resetCheckCell() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                arrayCell[i][j].setCheckOnCkech(false);
+            }
+        }
+    }
+
+
 }

@@ -21,6 +21,5 @@ public class Miner {
         Miner.height = y * 20 + 40;
         Miner.width = x * 20 + 40;
         field = new Field(y,x,mine);
-        field.redraw();
     }
 }

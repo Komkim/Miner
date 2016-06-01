@@ -16,4 +16,6 @@ public class Elements {
     {
         return new Canvas(Miner.width, Miner.height);
     }
+
+    public Group createGroup(){return new Group();}
 }

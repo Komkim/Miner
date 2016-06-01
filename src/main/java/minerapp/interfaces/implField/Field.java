@@ -26,7 +26,8 @@ public class Field implements IField{
         arr = can.getArrayCell();
         creatGraphicsElements();
         addAction();
-        addGraphicsElemnts();
+        addGraphicsElements();
+        redraw();
     }
 
     @Override
@@ -38,6 +39,14 @@ public class Field implements IField{
             }
         }
     }
+
+    public void checkZeroCell(int x, int y)
+    {
+        can.resetCheckCell();
+        can.checkZeroCell(x,y);
+    }
+
+
 
     @Override
     public void creatGraphicsElements() {
@@ -54,7 +63,7 @@ public class Field implements IField{
     }
 
     @Override
-    public void addGraphicsElemnts() {
+    public void addGraphicsElements() {
         root.getChildren().add(label);
         root.getChildren().add(canv);
     }

@@ -8,6 +8,6 @@ public interface IField {
 
     void addAction();//добавление нужных событий
 
-    void addGraphicsElemnts();//добавление нужных графических элементов на поле
+    void addGraphicsElements();//добавление нужных графических элементов на поле
 
 }

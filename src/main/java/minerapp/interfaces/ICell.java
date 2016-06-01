@@ -15,5 +15,7 @@ public interface ICell{
     boolean isOpenCell();//открыта ячейка или нет
     void openCell();//открывает ячейку
     void setNumber(int number);//записывает цифру в ячейку
+    void setCheckOnCkech(boolean checkOnCkech);
+    boolean isCheckOnCkech();
 
 }
