@@ -4,7 +4,7 @@ import main.java.minerapp.gui.Action;
 import main.java.minerapp.interfaces.ICell;
 import main.java.minerapp.interfaces.implField.Field;
 
-//логика игры
+//класс собирает все в кучу
 public class Miner {
     public static int height;
     public static int width;
@@ -13,6 +13,7 @@ public class Miner {
     canvas can;
     ICell[][] arr;
     UserLogic userLogic;
+
 
     public void Start(int x, int y, int mine) {
         Miner.height = y * 20 + 40;
@@ -24,7 +25,5 @@ public class Miner {
         userLogic = new UserLogic(arr, can);
 
         new Action(userLogic).mouseClicked(field);
-
-
     }
 }

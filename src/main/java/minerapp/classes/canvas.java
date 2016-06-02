@@ -13,11 +13,13 @@ public class canvas {
     private int numberMines;
     private ICell[][] arrayCell;
 
+
     public canvas(int height, int width, int numberMines) {
         this.height = height;
         this.width = width;
         this.numberMines = numberMines;
         arrayCell = new ICell[height][width];
+
 
         initArrayCell();
         initMineArrayCell();
@@ -54,7 +56,6 @@ public class canvas {
                 arrayCell[i][j] = new Cell();
             }
         }
-        initMineArrayCell();
     }
 
     //проставляет цифру в клетку
@@ -92,8 +93,6 @@ public class canvas {
         return new int[]{widthStart,widthFinish,heightStart,heightFinish};
     }
 
-
-    //открывает нулевые ячейки
     public void checkZeroCell(int x, int y)
     {
         arrayCell[y][x].openCell();
@@ -112,7 +111,6 @@ public class canvas {
         }
     }
 
-    //
     public void resetCheckCell() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -120,8 +118,6 @@ public class canvas {
             }
         }
     }
-
-
 
 
 }

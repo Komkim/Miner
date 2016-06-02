@@ -2,6 +2,7 @@ package main.java.minerapp.interfaces.implicell;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import main.java.minerapp.classes.StyleCell;
 import main.java.minerapp.interfaces.ICell;
 import javafx.scene.shape.Rectangle;
 
@@ -72,31 +73,27 @@ public class Cell implements ICell{
 
     @Override
     public void draw(GraphicsContext gc, int x, int y) {
-        gc.clearRect(20 + 20*x, 20 + 20*y, 20, 20);
+        new StyleCell(gc).crearCell(x, y);
         if(openCell)
         {
-            gc.setFill(Color.BLACK);
-            gc.strokeRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
+            new StyleCell(gc).openCell(x, y);
             if(number != 0)
             {
-                if(number == 9) gc.fillOval(25 + 20*x, 25 + 20*y, 10, 10);
-                else gc.fillText(String.valueOf(number),26.75 + 20*x, 33.5 + 20*y);
+                if(number == 9) new StyleCell(gc).mine(x, y);
+                else new StyleCell(gc).text(x,y,number);
             }
         }
         else if(isThinkMine())
         {
-            gc.setFill(Color.BLACK);
-            gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 20, 20);
+            new StyleCell(gc).thinkMine(x, y);
         }
         else if(isUnknownCell())
         {
-            gc.setFill(Color.SALMON);
-            gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 20, 20);
+            new StyleCell(gc).unknownCell(x,y);
         }
         else
         {
-            gc.setFill(Color.CHOCOLATE);
-            gc.fillRoundRect(20 + 20*x, 20 + 20*y, 20, 20, 10, 10);
+            new StyleCell(gc).defoultCell(x ,y);
         }
     }
 }

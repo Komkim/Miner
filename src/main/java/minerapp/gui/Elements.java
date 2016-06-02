@@ -5,7 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import main.java.minerapp.classes.Miner;
 
-//класс для элементов гуя
+//здесь можно определить стили для элементов гуя
 public class Elements {
     public Label createLabel()
     {

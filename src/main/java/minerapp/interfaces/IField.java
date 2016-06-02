@@ -4,10 +4,10 @@ package main.java.minerapp.interfaces;
 public interface IField {
     void redraw();//перерисовать поле игры
 
-    void creatGraphicsElements();//создание нужных для приложения графических элементов
+    //void creatGraphicsElements();//создание нужных для приложения графических элементов
 
     //void addAction();//добавление нужных событий
 
-    void addGraphicsElements();//добавление нужных графических элементов на поле
+   // void addGraphicsElements();//добавление нужных графических элементов на поле
 
 }

@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        new Miner().Start(20, 20, 30);
+        new Miner().Start(20, 20, 35);
         primaryStage.setTitle("Miner");
         primaryStage.setScene(new Scene(SingltonGroup.giveGroup(), Miner.width, Miner.height));
         primaryStage.show();

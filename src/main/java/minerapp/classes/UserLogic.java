@@ -35,9 +35,5 @@ public class UserLogic {
             arrCell[y][x].makeUnknown();
         }
         else arrCell[y][x].makeUnknown();
-
     }
-
-
-
 }
