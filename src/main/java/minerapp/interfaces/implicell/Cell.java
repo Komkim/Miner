@@ -7,7 +7,7 @@ import main.java.minerapp.interfaces.ICell;
 import javafx.scene.shape.Rectangle;
 
 //ячейка
-public class Cell implements ICell{
+public class Cell implements ICell {
     private boolean cellMine;
     private boolean cellUnknown;
     private boolean thinkMine;
@@ -17,34 +17,22 @@ public class Cell implements ICell{
 
     public Cell() {
         cellMine = false;
-        cellUnknown=false;
+        cellUnknown = false;
         thinkMine = false;
         openCell = false;
         checkOnCkech = false;
         number = 9;
     }
 
-    public void setCellMine(boolean cellMine) {
-        this.cellMine = cellMine;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
+    @Override
     public boolean isOpenCell() {
         return openCell;
     }
 
-    public boolean isChecknotCkech() {return checkOnCkech;}
-
-    public void setChecknotCkech(boolean checkOnCkech) {this.checkOnCkech = checkOnCkech;}
-
     @Override
-    public void openCell() {this.openCell = true;}
-
-    @Override
-    public int getNumber() {return number;}
+    public boolean isChecknotCkech() {
+        return checkOnCkech;
+    }
 
     @Override
     public boolean isMine() {
@@ -57,6 +45,27 @@ public class Cell implements ICell{
     }
 
     @Override
+    public boolean isThinkMine() {
+        return thinkMine;
+    }
+
+
+    @Override
+    public void setCellMine(boolean cellMine) {
+        this.cellMine = cellMine;
+    }
+
+    @Override
+    public void setChecknotCkech(boolean checkOnCkech) {
+        this.checkOnCkech = checkOnCkech;
+    }
+
+    @Override
+    public void openCell() {
+        this.openCell = true;
+    }
+
+    @Override
     public void makeUnknown() {
         cellUnknown = !cellUnknown;
     }
@@ -66,34 +75,33 @@ public class Cell implements ICell{
         thinkMine = !thinkMine;
     }
 
+
     @Override
-    public boolean isThinkMine() {
-        return thinkMine;
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     @Override
     public void draw(GraphicsContext gc, int x, int y) {
-        new StyleCell(gc).crearCell(x, y);
-        if(openCell)
-        {
-            new StyleCell(gc).openCell(x, y);
-            if(number != 0)
-            {
-                if(number == 9) new StyleCell(gc).mine(x, y);
-                else new StyleCell(gc).text(x,y,number);
+        StyleCell styleCell = new StyleCell(gc);
+        styleCell.crearCell(x, y);
+        if (openCell) {
+            styleCell.openCell(x, y);
+            if (number != 0) {
+                if (isMine()) styleCell.mine(x, y);
+                else styleCell.text(x, y, number);
             }
-        }
-        else if(isThinkMine())
-        {
-            new StyleCell(gc).thinkMine(x, y);
-        }
-        else if(isUnknownCell())
-        {
-            new StyleCell(gc).unknownCell(x,y);
-        }
-        else
-        {
-            new StyleCell(gc).defoultCell(x ,y);
+        } else if (isThinkMine()) {
+            styleCell.thinkMine(x, y);
+        } else if (isUnknownCell()) {
+            styleCell.unknownCell(x, y);
+        } else {
+            styleCell.defoultCell(x, y);
         }
     }
 }

@@ -9,12 +9,13 @@ import main.java.minerapp.gui.SingltonGroup;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        new Miner().Start(20, 20, 35);
+    public void start(Stage primaryStage) throws Exception {
+        new Miner().Start(20, 20, 60);
         primaryStage.setTitle("Miner");
-        primaryStage.setScene(new Scene(SingltonGroup.giveGroup(), Miner.width, Miner.height));
+        primaryStage.setScene(new Scene(SingltonGroup.giveGroup(), Miner.WIDTH, Miner.HEIGHT));
         primaryStage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }

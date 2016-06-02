@@ -2,35 +2,51 @@ package main.java.minerapp.gui;
 
 
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import main.java.minerapp.classes.Miner;
 import main.java.minerapp.classes.UserLogic;
 import main.java.minerapp.interfaces.implField.Field;
 
 //класс для возможных событий
 public class Action {
-    UserLogic userLogic;
+    private UserLogic userLogic;
 
-    public Action(UserLogic userLogic)
-    {
+    public Action(UserLogic userLogic) {
         this.userLogic = userLogic;
     }
 
-    public void mouseClicked(Field field) {
+    public void mouseClicked(Field field, int x, int y) {
         SingltonGroup.giveGroup().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                int x = ((int) event.getX() / 20 - 1);
-                int y = ((int) event.getY() / 20 - 1);
+                double mouseCoordX = (event.getX() - Miner.INDENT_LEFT)/Miner.SIZE_CELL;
+                double mouseCoordY = (event.getY() - Miner.INDENT_TOP)/Miner.SIZE_CELL;
 
-                if(event.getButton() ==  MouseButton.SECONDARY)
-                {
-                    userLogic.rightClickMouse(x,y);
+                if(!(mouseCoordX < 0 || mouseCoordY < 0 || (int)mouseCoordX >= x || (int)mouseCoordY >= y)) {
+
+                    if (event.getButton() == MouseButton.SECONDARY) {
+                        userLogic.rightClickMouse((int)mouseCoordX, (int)mouseCoordY);
+                    }
+                    if (event.getButton() == MouseButton.PRIMARY) {
+                        userLogic.openCell((int)mouseCoordX, (int)mouseCoordY);
+                    }
+                    field.redraw();
                 }
-                if(event.getButton() == MouseButton.PRIMARY) {
-                    userLogic.openCell(x,y);
-                }
-                field.redraw();
+
+            }
+        });
+    }
+
+    public void newGame(Node node, int x, int y, int mine,GraphicsContext gc)
+    {
+        node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                gc.clearRect(0,0,Miner.WIDTH, Miner.HEIGHT);
+                new Miner().Start(x,y,mine);
             }
         });
     }
