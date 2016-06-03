@@ -6,9 +6,13 @@ public interface IField {
 
     void redraw();//перерисовать поле игры
 
+    boolean gameOver();
+
+    void youWin();
+
     //void creatGraphicsElements();//создание нужных для приложения графических элементов
 
-    void addAction();//добавление нужных событий
+    //void addAction();//добавление нужных событий
 
     // void addGraphicsElements();//добавление нужных графических элементов на поле
 

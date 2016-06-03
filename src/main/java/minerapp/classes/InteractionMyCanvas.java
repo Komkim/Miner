@@ -36,12 +36,51 @@ public class InteractionMyCanvas {
         return new int[]{widthStart, widthFinish, heightStart, heightFinish};
     }
 
-
+    //делает клетки не проверенными после проверки
     public void resetCheckCell() {
         for (int i = 0; i < arrayCell.length; i++) {
             for (int j = 0; j < arrayCell[0].length; j++) {
                 arrayCell[i][j].setChecknotCkech(false);
             }
+        }
+    }
+
+    //открывает клетки вокруг указанной
+    public void openDistrict(int x, int y) {
+        if (arrayCell[y][x].getNumber() == backNumberCellThinkMine(x, y) && arrayCell[y][x].isOpenCell()) {
+            int[] myCoord = startFinishPosition(x, y);
+            for (int ii = myCoord[2]; ii <= myCoord[3]; ii++) {
+                for (int jj = myCoord[0]; jj <= myCoord[1]; jj++) {
+                    if (!arrayCell[ii][jj].isThinkMine()) {
+                        arrayCell[ii][jj].openCell();
+                        checkZeroCell(jj, ii);
+                    }
+                }
+            }
+        }
+
+
+    }
+    //счетает сколько клеток вокруг помеченны как мины
+    private int backNumberCellThinkMine(int x, int y) {
+        int countMine = 0;
+        int[] myCoord = startFinishPosition(x, y);
+        for (int ii = myCoord[2]; ii <= myCoord[3]; ii++) {
+            for (int jj = myCoord[0]; jj <= myCoord[1]; jj++) {
+                if (arrayCell[ii][jj].isThinkMine()) countMine++;
+            }
+        }
+        return countMine;
+    }
+    //
+    public void rightClickMouse(int x, int y) {
+        if (!arrayCell[y][x].isOpenCell()) {
+            if (!arrayCell[y][x].isThinkMine() && !arrayCell[y][x].isUnknownCell()) {
+                arrayCell[y][x].thinkThatMine();
+            } else if (arrayCell[y][x].isThinkMine()) {
+                arrayCell[y][x].thinkThatMine();
+                arrayCell[y][x].makeUnknown();
+            } else arrayCell[y][x].makeUnknown();
         }
     }
 }

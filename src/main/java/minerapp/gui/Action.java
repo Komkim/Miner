@@ -18,35 +18,35 @@ public class Action {
         this.userLogic = userLogic;
     }
 
-    public void mouseClicked(Field field, int x, int y) {
+    public void mouseClicked(Field field) {
         SingltonGroup.giveGroup().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                double mouseCoordX = (event.getX() - Miner.INDENT_LEFT)/Miner.SIZE_CELL;
-                double mouseCoordY = (event.getY() - Miner.INDENT_TOP)/Miner.SIZE_CELL;
+                double mouseCoordX = (event.getX() - Miner.INDENT_LEFT) / Miner.SIZE_CELL;
+                double mouseCoordY = (event.getY() - Miner.INDENT_TOP) / Miner.SIZE_CELL;
 
-                if(!(mouseCoordX < 0 || mouseCoordY < 0 || (int)mouseCoordX >= x || (int)mouseCoordY >= y)) {
-
+                if (!(mouseCoordX < 0 || mouseCoordY < 0 || (int) mouseCoordX >= Miner.SIZE_CANVAS_X || (int) mouseCoordY >= Miner.SIZE_CANVAS_Y)) {
                     if (event.getButton() == MouseButton.SECONDARY) {
-                        userLogic.rightClickMouse((int)mouseCoordX, (int)mouseCoordY);
+                        userLogic.rightClickMouse((int) mouseCoordX, (int) mouseCoordY);
+                        userLogic.openDistrict((int) mouseCoordX, (int) mouseCoordY);
                     }
                     if (event.getButton() == MouseButton.PRIMARY) {
-                        userLogic.openCell((int)mouseCoordX, (int)mouseCoordY);
+                        userLogic.openCell((int) mouseCoordX, (int) mouseCoordY);
                     }
-                    field.redraw();
                 }
+                field.youWin();
+                field.redraw();
 
             }
         });
     }
-
-    public void newGame(Node node, int x, int y, int mine,GraphicsContext gc)
-    {
+    //начинает новую игры по нажатию кнопки
+    public void newGame(Node node, GraphicsContext gc) {
         node.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                gc.clearRect(0,0,Miner.WIDTH, Miner.HEIGHT);
-                new Miner().Start(x,y,mine);
+                gc.clearRect(0, 0, Miner.WIDTH, Miner.HEIGHT);
+                new Miner().Start(Miner.SIZE_CANVAS_X, Miner.SIZE_CANVAS_Y, Miner.NUMBER_MINE);
             }
         });
     }

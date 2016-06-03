@@ -22,11 +22,11 @@ public class UserLogic {
 
     //клик правой кнопкой мыши
     public void rightClickMouse(int x, int y) {
-        if (!arrCell[y][x].isThinkMine() && !arrCell[y][x].isUnknownCell()) {
-            arrCell[y][x].thinkThatMine();
-        } else if (arrCell[y][x].isThinkMine()) {
-            arrCell[y][x].thinkThatMine();
-            arrCell[y][x].makeUnknown();
-        } else arrCell[y][x].makeUnknown();
+        interactionMyCanvas.rightClickMouse(x, y);
+    }
+
+    public void openDistrict(int x, int y)
+    {
+        interactionMyCanvas.openDistrict(x, y);
     }
 }

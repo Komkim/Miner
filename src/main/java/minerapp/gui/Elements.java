@@ -23,8 +23,8 @@ public class Elements {
     public Button startButton()
     {
         Button button = new Button();
-        button.setPrefSize(30,30);
-        button.setLayoutX(Miner.WIDTH/2 - 15);
+        button.setPrefSize(100,30);
+        button.setLayoutX(Miner.WIDTH/2 - 50);
         button.setLayoutY(10);
         return button;
     }

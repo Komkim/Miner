@@ -9,6 +9,9 @@ import main.java.minerapp.interfaces.implField.Field;
 public class Miner {
     public static int HEIGHT = 0;
     public static int WIDTH = 0;
+    public static int SIZE_CANVAS_X;
+    public static int SIZE_CANVAS_Y;
+    public static int NUMBER_MINE;
     public final static int INDENT_LEFT = 20;
     public final static int INDENT_RIGHT = 20;
     public final static int INDENT_TOP= 60;
@@ -27,13 +30,16 @@ public class Miner {
 
         Miner.HEIGHT = y * Miner.SIZE_CELL + Miner.INDENT_BUTTOM + Miner.INDENT_TOP;
         Miner.WIDTH = x * Miner.SIZE_CELL + Miner.INDENT_LEFT + Miner.INDENT_RIGHT;
+        Miner.SIZE_CANVAS_X = x;
+        Miner.SIZE_CANVAS_Y = y;
+        Miner.NUMBER_MINE = mine;
 
 
         can = new canvas(y, x, mine);
         arr = can.getArrayCell();
         interactionMyCanvas = new InteractionMyCanvas(can, arr);
         userLogic = new UserLogic(arr, interactionMyCanvas);
-        field = new Field(arr,userLogic, x, y, mine);
+        field = new Field(arr,userLogic);
 
 
     }
